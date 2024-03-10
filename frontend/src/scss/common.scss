@@ -1,0 +1,14 @@
+@use 'sass:math';
+
+@for $i from 1 through 10 {
+    .p-#{$i} {
+        padding: $i * 0.25rem;
+    }
+}
+
+
+@for $i from 1 through 12 {
+    .w-#{$i}\/12 {
+        width: calc(($i/ 12)*100%);
+    }
+}
