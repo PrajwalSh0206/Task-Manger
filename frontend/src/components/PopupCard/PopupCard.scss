@@ -1,0 +1,96 @@
+.popup-background {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+
+    .popup {
+        padding: 0.25rem*4;
+        background-color: rgb(34, 42, 54);
+        color: #fff;
+        border-radius: 0.25rem*2;
+
+        .header {
+            padding: 0;
+            font-size: 0.25rem*5;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.25rem*4;
+            border: 0;
+            border-radius: 0.25rem;
+            background-color: rgb(21, 26, 34);
+            color: #fff;
+
+            &:focus {
+                outline: 0;
+            }
+
+            &::placeholder {
+                color: #7e7d7d;
+            }
+        }
+
+        textarea {
+            max-width: 100%;
+            min-width: 100%;
+            max-height: 0.25rem*54;
+        }
+
+        .title,
+        .description,
+        .date {
+            display: flex;
+            flex-direction: column;
+
+            >*+* {
+                margin-top: 0.25rem*2
+            }
+
+            p {
+                font-size: 0.25rem*4;
+                font-weight: 400;
+                margin: 0;
+            }
+
+        }
+
+        #createtask {
+            background-color: rgb(59 130 246);
+            font-size: 0.25rem*4;
+            color: #fff;
+            border-radius: 0.25rem;
+            padding: 0.25rem*2;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+                0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+
+            &:active {
+                transform: scale(0.9);
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+        >*+* {
+            margin-top: 0.25rem*4
+        }
+    }
+
+}

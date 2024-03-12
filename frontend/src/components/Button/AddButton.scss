@@ -1,0 +1,16 @@
+.addbutton {
+    width: calc(3/12)*100%;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 14rem;
+    font-size: 0.25rem*5;
+    border: 2px dotted #7d7676;
+    border-radius: 0.25rem;
+
+    &:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+}
