@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function Sidebar() {
-    const [activeLink, setActiveLink] = useState("home");
+    const [activeLink, setActiveLink] = useState<string>("home");
 
-    const handleLinkClick = (linkName) => {
+    const handleLinkClick = (linkName:string) => {
         // Set the active link based on link clicked
         setActiveLink(linkName);
     };
