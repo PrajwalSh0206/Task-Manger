@@ -1,6 +1,12 @@
+import React from 'react'
 import './Card.scss'
 
-const Card = ({ title, description, date, completedTag }) => {
+
+interface CardDto {
+    title:string, description:string, date:string, completedTag:boolean
+}
+
+const Card:React.FC<CardDto> = ({ title, description, date, completedTag }) => {
 
     return (
         <div className="w-3/12 card">
