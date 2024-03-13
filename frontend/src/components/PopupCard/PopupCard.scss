@@ -21,7 +21,7 @@
             margin: 0;
         }
 
-        input,
+        input[type=text],
         textarea {
             width: 100%;
             padding: 0.25rem*4;
@@ -36,6 +36,14 @@
 
             &::placeholder {
                 color: #7e7d7d;
+            }
+        }
+
+        .toggle{
+            font-size: 0.25rem*4;
+            font-weight: 300;
+            p{
+                margin: 0;
             }
         }
 
