@@ -10,7 +10,7 @@ const PopupCard: React.FC<PopupCardDto> = ({ title, description, date, completed
 
     return (
         <div className='popup-background'>
-            <div className="w-5/12 popup">
+            <form className="w-5/12 popup">
                 <p className='header'>Create a Task</p>
                 <div className='title'>
                     <p>Title</p>
@@ -24,15 +24,25 @@ const PopupCard: React.FC<PopupCardDto> = ({ title, description, date, completed
                     <p>Date</p>
                     <input type="text" placeholder='mm/dd/yyyy' />
                 </div>
-                <div className='flex flex-row p-5 justify-content-end'>
+                <div className='flex align-items-center justify-content-between toggle'>
+                <p>Toggle Completed</p>
+                <input type="checkbox" name="" id="" />
+                </div>
+                <div className='flex align-items-center justify-content-between toggle'>
+                <p>Toggle Important</p>
+                <input type="checkbox" name="" id="" />
+
+                </div>
+                <div className='flex flex-row justify-content-end'>
                     <button id='createtask' className='flex flex-row align-items-center'>
-                        <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg width="24px" height="24px" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M6 12H12M18 12H12M12 12V6M12 12V18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                         <p>
                             Create Task
                         </p>
                     </button>
                 </div>
-            </div>
+
+            </form>
         </div>
     )
 }

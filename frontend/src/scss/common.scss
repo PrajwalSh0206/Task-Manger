@@ -4,6 +4,20 @@
     .p-#{$i} {
         padding: $i * 0.25rem;
     }
+    .px-#{$i} {
+        padding-left: $i * 0.25rem;
+        padding-right: $i * 0.25rem;
+    }
+    .py-#{$i} {
+        padding-top: $i * 0.25rem;
+        padding-right: $i * 0.25rem;
+    }
+    .pl-#{$i} {
+        padding-left: $i * 0.25rem;
+        }
+    .pr-#{$i} {
+        padding-right: $i * 0.25rem;
+    }
 }
 
 
@@ -35,6 +49,10 @@
 
 .justify-content-end{
     justify-content: flex-end;
+}
+
+.justify-content-between{
+    justify-content: space-between;
 }
 
 .align-items-center{
