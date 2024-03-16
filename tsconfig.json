@@ -2,11 +2,14 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "es2015"],
-    "module": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules"]
+
 }
