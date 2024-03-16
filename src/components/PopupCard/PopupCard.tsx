@@ -25,12 +25,12 @@ const PopupCard: React.FC<PopupCardDto> = ({ title, description, date, completed
                     <input type="text" placeholder='mm/dd/yyyy' />
                 </div>
                 <div className='flex align-items-center justify-content-between toggle'>
-                <p>Toggle Completed</p>
-                <input type="checkbox" name="" id="" />
+                    <p>Toggle Completed</p>
+                    <input type="checkbox" name="" id="" />
                 </div>
                 <div className='flex align-items-center justify-content-between toggle'>
-                <p>Toggle Important</p>
-                <input type="checkbox" name="" id="" />
+                    <p>Toggle Important</p>
+                    <input type="checkbox" name="" id="" />
 
                 </div>
                 <div className='flex flex-row justify-content-end'>
