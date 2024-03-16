@@ -1,12 +1,12 @@
 import './Sidebar.scss';
 import '../../scss/common.scss'
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-function Sidebar() {
+const Sidebar: React.FC = () => {
     const [activeLink, setActiveLink] = useState<string>("home");
 
-    const handleLinkClick = (linkName:string) => {
+    const handleLinkClick = (linkName: string) => {
         // Set the active link based on link clicked
         setActiveLink(linkName);
     };

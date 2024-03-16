@@ -1,4 +1,6 @@
-const Important = () => {
+import React from "react"
+
+const Important:React.FC = () => {
     return (
         <div>
 
