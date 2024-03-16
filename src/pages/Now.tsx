@@ -1,4 +1,6 @@
-const Now = () => {
+import React from "react"
+
+const Now: React.FC = () => {
     return (
         <div>
 

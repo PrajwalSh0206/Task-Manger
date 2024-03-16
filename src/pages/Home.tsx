@@ -1,8 +1,9 @@
+import React from 'react'
 import AddButton from '../components/Button/AddButton'
 import Card from '../components/Cards/Card'
 import './Home.scss'
 
-const Home = () => {
+const Home:React.FC = () => {
     return (
 
         <div id="home">
