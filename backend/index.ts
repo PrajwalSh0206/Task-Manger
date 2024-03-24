@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import router from "./routes";
 import morgan from "morgan";
 import sequelize from "./models";
+import cors from 'cors'
 
 const app = express();
 const port = 5000;
@@ -22,6 +23,7 @@ const options = {
 };
 
 const specs = swaggerJsdoc(options);
+app.use(cors())
 
 app.use(bodyParser.json());
 app.use(morgan("dev"));
