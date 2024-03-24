@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './PopupCard.scss';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { changeState } from '../../store/reducers/popupReducer';
+import { createTask } from '../../../service/task.service';
+import { taskDto } from '../../../dto/task.dto';
+import SnackBar from '../Snackbar/Snackbar';
 
 interface PopupCardDto {
   title?: string;
@@ -11,6 +14,8 @@ interface PopupCardDto {
   completedTag?: boolean;
   importantTag?: boolean;
 }
+
+type toastDto = 'success' | 'failure';
 
 const PopupCard: React.FC<PopupCardDto> = ({
   title = '',
@@ -24,17 +29,56 @@ const PopupCard: React.FC<PopupCardDto> = ({
   let [cardDate, setCardDate] = useState(date);
   let [cardCompleteTag, setCardCompleteTag] = useState(completedTag);
   let [cardImportantTag, setCardImportantTag] = useState(importantTag);
+  let [toastMessage, setToastMessage] = useState('Default Message');
+  let [toastType, setToastType] = useState<toastDto>('failure');
+  let [enableToast, setEnableToast] = useState<boolean>(false);
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const submitData = (e: React.MouseEvent) => {
+  const submitData = async (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(changeState());
-    console.log(cardTitle, cardDescription, cardDate);
+    console.log('check');
+
+    try {
+      const taskPayload: taskDto = {
+        title: cardTitle,
+        description: cardDescription,
+        date: cardDate,
+        completed: cardCompleteTag,
+        important: cardImportantTag
+      };
+      const response = await createTask(taskPayload);
+      openToast(response.type, response.message);
+      setTimeout(() => {
+        dispatch(changeState());
+      }, 5000);
+    } catch (error: any) {
+      openToast(error.type, error.message);
+    }
   };
+
+  const openToast = (type: toastDto, message: string) => {
+    setToastType(type);
+    setToastMessage(message);
+    setEnableToast(true);
+  };
+
+  useEffect(() => {
+    if (enableToast) {
+      setTimeout(() => {
+        setEnableToast(false);
+      }, 3000);
+    }
+  }, [enableToast]);
 
   return (
     <div className="popup-background">
+      <SnackBar
+        enableToast={enableToast}
+        toastMessage={toastMessage}
+        toastType={toastType}
+      ></SnackBar>
+
       <form className="w-5/12 popup">
         <p className="header">Create a Task</p>
         <div className="title">
@@ -95,7 +139,7 @@ const PopupCard: React.FC<PopupCardDto> = ({
             type="checkbox"
             checked={cardImportantTag}
             onChange={() => {
-              setCardImportantTag(!cardCompleteTag);
+              setCardImportantTag(!cardImportantTag);
             }}
           />
         </div>

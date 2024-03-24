@@ -7,6 +7,9 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   /* Black background with opacity */
+  p {
+    margin: 0;
+  }
 
   .popup {
     padding: 0.25rem * 4;
@@ -21,7 +24,7 @@
       margin: 0;
     }
 
-    input[type='text'],
+    input[type="text"],
     textarea {
       width: 100%;
       padding: 0.25rem * 4;
@@ -50,7 +53,7 @@
       .svg {
         width: 0.25rem * 4;
       }
-      input[type='date'] {
+      input[type="date"] {
         width: 100%;
         border: 0;
         border-radius: 0.25rem;

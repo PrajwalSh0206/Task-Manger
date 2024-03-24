@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 import PopupCard from './components/PopupCard/PopupCard';
 import Sidebar from './components/Sidebars/Sidebars';
@@ -10,10 +10,25 @@ import './scss/common.scss';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store/store';
+import { getTasks } from '../service/task.service';
+import { updateTask } from './store/reducers/taskReducer';
 
 const App: React.FC = () => {
   const popupState = useSelector((state: RootState) => state.popup.value);
   const dispatch = useDispatch<AppDispatch>();
+
+  const fillTask = async () => {
+    try {
+      const response = await getTasks({});
+      dispatch(updateTask(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fillTask();
+  }, []);
 
   return (
     <>
