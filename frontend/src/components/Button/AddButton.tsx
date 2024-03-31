@@ -12,7 +12,7 @@ const AddButton: React.FC = () => {
   };
 
   return (
-    <button className="addbutton" onClick={callPopup}>
+    <button className="addbutton w-3/12" onClick={callPopup}>
       <svg
         width="24px"
         height="24px"

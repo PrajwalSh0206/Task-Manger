@@ -20,16 +20,25 @@
 
   .cardlist {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     height: 100%;
     width: 100%;
-
     > * + * {
-      margin-left: 0.25rem * 3;
       margin-top: 0.25rem * 3;
     }
+    .row
+    {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      > * + * {
+        margin-left: 0.25rem * 3;
+      }
+    }
+
+  
   }
 }
