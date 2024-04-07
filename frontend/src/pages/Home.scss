@@ -1,4 +1,6 @@
 #home {
+  width: 100%;
+  height: 100%;
   > p {
     padding: 0;
     margin: 0;
@@ -19,13 +21,14 @@
   }
 
   .cardlist {
+    position: relative;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 
     .row
     {

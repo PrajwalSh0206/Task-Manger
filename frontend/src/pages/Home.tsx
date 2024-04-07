@@ -32,7 +32,7 @@ const Home: React.FC = () => {
     <div id="home">
       <p>All Tasks</p>
 
-      <div className="cardlist">
+      <div className="cardlist scrollbar">
         {size.map((value, index) => {
           return (
             <div className="row" key={value}>
@@ -49,6 +49,11 @@ const Home: React.FC = () => {
             </div>
           );
         })}
+        {(cards[size.length - 1]?.length == 4 || cards.length == 0) && (
+          <div className="row">
+            <AddButton></AddButton>
+          </div>
+        )}
       </div>
     </div>
   );
