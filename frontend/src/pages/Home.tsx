@@ -45,7 +45,7 @@ const Home: React.FC = () => {
                   completedTag={value.completed}
                 ></Card>
               ))}
-              {size.length == index + 1 && <AddButton></AddButton>}
+              {cards[index].length != 4 && <AddButton></AddButton>}
             </div>
           );
         })}

@@ -9,7 +9,7 @@ interface CardDto {
 const Card:React.FC<CardDto> = ({ title, description, date, completedTag }) => {
 
     return (
-        <div className="w-3/12 card">
+        <div className="card">
             <p className='title'>{title}</p>
             <p className='description'>
                 {description}
