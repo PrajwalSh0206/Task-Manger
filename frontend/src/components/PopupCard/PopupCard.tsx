@@ -3,9 +3,10 @@ import './PopupCard.scss';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { changeState } from '../../store/reducers/popupReducer';
-import { createTask } from '../../../service/task.service';
+import { createTask, getTasks } from '../../../service/task.service';
 import { taskDto } from '../../../dto/task.dto';
 import SnackBar from '../Snackbar/Snackbar';
+import { updateTask } from '../../store/reducers/taskReducer';
 
 interface PopupCardDto {
   title?: string;
@@ -35,9 +36,13 @@ const PopupCard: React.FC<PopupCardDto> = ({
 
   const dispatch = useDispatch<AppDispatch>();
 
+  const fillTask = async () => {
+    const result = await getTasks();
+    dispatch(updateTask(result.data));
+  };
+
   const submitData = async (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log('check');
 
     try {
       const taskPayload: taskDto = {
@@ -49,9 +54,12 @@ const PopupCard: React.FC<PopupCardDto> = ({
       };
       const response = await createTask(taskPayload);
       openToast(response.type, response.message);
-      setTimeout(() => {
+      const result = await getTasks();
+      dispatch(updateTask(result.data));
+      setTimeout(async () => {
         dispatch(changeState());
-      }, 5000);
+        await fillTask();
+      }, 2000);
     } catch (error: any) {
       openToast(error.type, error.message);
     }

@@ -1,5 +1,5 @@
-export interface taskDto {
-  id?: string;
+export interface getTaskDto {
+  id: string;
   title: string;
   description: string;
   date: string;
@@ -7,7 +7,11 @@ export interface taskDto {
   important: boolean;
 }
 
-export interface getTaskDto {
-  completed?: boolean;
-  important?: boolean;
+export interface taskDto {
+  title: string;
+  description: string;
+  date: string;
+  completed: boolean;
+  important: boolean;
 }
+

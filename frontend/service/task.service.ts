@@ -49,9 +49,7 @@ export const createTask = async (
   }
 };
 
-export const getTasks = async (
-  taskPayload: getTaskDto,
-): Promise<axiosGetResponseDto> => {
+export const getTasks = async (): Promise<axiosGetResponseDto> => {
   try {
     const response: axiosDto = await axios({
       url: `${API_BASE_URL}/task`,

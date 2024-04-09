@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
   /* Black background with opacity */
   p {
     margin: 0;
@@ -16,7 +17,6 @@
     background-color: rgb(34, 42, 54);
     color: #fff;
     border-radius: 0.25rem * 2;
-
     .header {
       padding: 0;
       font-size: 0.25rem * 5;

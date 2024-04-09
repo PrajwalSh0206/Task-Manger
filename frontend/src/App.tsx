@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   const fillTask = async () => {
     try {
-      const response = await getTasks({});
+      const response = await getTasks();
       dispatch(updateTask(response.data));
     } catch (error) {
       console.log(error);

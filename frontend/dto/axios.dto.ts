@@ -1,9 +1,9 @@
-import { taskDto } from './task.dto';
+import { getTaskDto } from './task.dto';
 
 export interface axiosDto {
   data: {
     message: string;
-    data?: Array<taskDto>;
+    data?: Array<getTaskDto>;
   };
   status: number;
 }
@@ -17,5 +17,5 @@ export interface axiosCreateResponseDto {
 
 export interface axiosGetResponseDto {
   type: type;
-  data: Array<taskDto>;
+  data: Array<getTaskDto>;
 }

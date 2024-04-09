@@ -1,11 +1,11 @@
 // reducers/counterReducer.ts
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { taskDto } from '../../../dto/task.dto';
+import { getTaskDto } from '../../../dto/task.dto';
 
 interface taskInitialDto {
-  all: Array<taskDto>;
-  important: Array<taskDto>;
-  completed: Array<taskDto>;
+  all: Array<getTaskDto>;
+  important: Array<getTaskDto>;
+  completed: Array<getTaskDto>;
 }
 
 const initialState: taskInitialDto = {
@@ -18,7 +18,7 @@ const popupSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
-    updateTask: (state, actions: PayloadAction<Array<taskDto>>) => {
+    updateTask: (state, actions: PayloadAction<Array<getTaskDto>>) => {
       const tasks = actions.payload;
       state.all = tasks;
       state.completed = tasks.filter((value) => {
