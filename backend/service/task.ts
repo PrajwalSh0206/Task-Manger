@@ -32,13 +32,28 @@ export const createTask = async (taskData: task): Promise<void> => {
   }
 };
 
+export const deleteTask = async (id: string): Promise<void> => {
+  try {
+    await Task.destroy({
+      where: {
+        taskId: id,
+      },
+    });
+    console.log("Task Deleted")
+  } catch (error) {
+    console.error(error);
+    const err = new Error("Failed To Delete Task");
+    throw err;
+  }
+};
+
 export const getTasks = async (
   condition: taskCondtion
 ): Promise<Array<taskResponse>> => {
   try {
     const response: Array<taskResponse> = await Task.findAll({
       attributes: [
-        ["taskId","id"],
+        ["taskId", "id"],
         "title",
         "description",
         "date",

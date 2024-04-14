@@ -19,3 +19,7 @@ export interface axiosGetResponseDto {
   type: type;
   data: Array<getTaskDto>;
 }
+
+export interface axiosDeleteResponseDto{
+  type: type;
+}

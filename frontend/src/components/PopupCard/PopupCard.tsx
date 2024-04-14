@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './PopupCard.scss';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
@@ -7,6 +7,7 @@ import { createTask, getTasks } from '../../../service/task.service';
 import { taskDto } from '../../../dto/task.dto';
 import SnackBar from '../Snackbar/Snackbar';
 import { updateTask } from '../../store/reducers/taskReducer';
+import { enableToast } from '../../store/reducers/snackBarReducer';
 
 interface PopupCardDto {
   title?: string;
@@ -30,9 +31,6 @@ const PopupCard: React.FC<PopupCardDto> = ({
   let [cardDate, setCardDate] = useState(date);
   let [cardCompleteTag, setCardCompleteTag] = useState(completedTag);
   let [cardImportantTag, setCardImportantTag] = useState(importantTag);
-  let [toastMessage, setToastMessage] = useState('Default Message');
-  let [toastType, setToastType] = useState<toastDto>('failure');
-  let [enableToast, setEnableToast] = useState<boolean>(false);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -66,27 +64,17 @@ const PopupCard: React.FC<PopupCardDto> = ({
   };
 
   const openToast = (type: toastDto, message: string) => {
-    setToastType(type);
-    setToastMessage(message);
-    setEnableToast(true);
+    dispatch(
+      enableToast({
+        toastMessage: message,
+        toastType: type
+      })
+    );
   };
-
-  useEffect(() => {
-    if (enableToast) {
-      setTimeout(() => {
-        setEnableToast(false);
-      }, 3000);
-    }
-  }, [enableToast]);
 
   return (
     <div className="popup-background">
-      <SnackBar
-        enableToast={enableToast}
-        toastMessage={toastMessage}
-        toastType={toastType}
-      ></SnackBar>
-
+      <SnackBar></SnackBar>
       <form className="w-5/12 popup">
         <p className="header">Create a Task</p>
         <div className="title">

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store/store';
 import { getTasks } from '../service/task.service';
 import { updateTask } from './store/reducers/taskReducer';
+import SnackBar from './components/Snackbar/Snackbar';
 
 const App: React.FC = () => {
   const popupState = useSelector((state: RootState) => state.popup.value);
@@ -33,6 +34,7 @@ const App: React.FC = () => {
   return (
     <>
       {popupState && <PopupCard></PopupCard>}
+      <SnackBar></SnackBar>
       <div className="container">
         <Sidebar></Sidebar>
 

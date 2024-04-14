@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
-import Task from "../models/task.model";
-import { createTask, getTasks } from "../service/task";
+import { createTask, deleteTask, getTasks } from "../service/task";
 import { removeUndefinedFields } from "../modules/object";
 const router = express.Router();
 
@@ -10,6 +9,10 @@ interface task {
   date: string;
   completed: boolean;
   important: boolean;
+}
+
+interface deleteTaskDto {
+  id: string;
 }
 
 /**
@@ -105,5 +108,43 @@ router.get(
     }
   }
 );
+
+/**
+ * @swagger
+ * /task:
+ *   delete:
+ *     summary: Delete task
+ *     consumes:
+ *      - application/json
+ *     produces:
+ *      - application/json
+ *     description: Endpoint to delete task
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Successful response
+ */
+router.delete("/", async (req: Request<deleteTaskDto>, res: Response): Promise<any> => {
+  try {
+    const { id } = req.body;
+    await deleteTask(id);
+
+    const result = {
+      message: "Task Deleted",
+    };
+
+    return res.status(200).send(result);
+  } catch (error) {
+    console.log(`Error | ${error}`);
+    return res.status(500).send({ message: error });
+  }
+});
 
 export default router;

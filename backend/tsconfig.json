@@ -7,5 +7,5 @@
     "esModuleInterop": true, // Enables interoperability between CommonJS and ES Modules.
     "moduleResolution": "node" // Specifies how module imports are resolved. "node" uses Node.js resolution algorithm.
   },
-  "include": ["src/**/*.ts"] // Specifies the files to include in the compilation process. This includes all TypeScript files in the "src" directory and its subdirectories.
+  "include": ["./**/*.ts"] // Specifies the files to include in the compilation process. This includes all TypeScript files in the "src" directory and its subdirectories.
 }

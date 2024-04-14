@@ -1,5 +1,10 @@
 import React from 'react';
 import './Card.scss';
+import { deleteTasks, getTasks } from '../../../service/task.service';
+import { AppDispatch } from '../../store/store';
+import { useDispatch } from 'react-redux';
+import { updateTask } from '../../store/reducers/taskReducer';
+import { enableToast } from '../../store/reducers/snackBarReducer';
 
 interface CardDto {
   id: string;
@@ -17,7 +22,32 @@ const Card: React.FC<CardDto> = ({
   completedTag
 }) => {
   const editTask = () => {};
-  const deleteTask = () => {};
+  const deleteTask = async () => {
+    try {
+      await deleteTasks(id);
+      await fillTask()
+      openToast("success", "Task Deleted Successfully");
+    } catch (error) {
+      openToast("failure", "Task Failed To Delete");
+    }
+  };
+
+  type toastDto = 'success' | 'failure';
+  const dispatch = useDispatch<AppDispatch>();
+  
+  const fillTask = async () => {
+    const result = await getTasks();
+    dispatch(updateTask(result.data));
+  };
+
+  const openToast = (type: toastDto, message: string) => {
+    dispatch(
+      enableToast({
+        toastMessage: message,
+        toastType: type
+      })
+    );
+  };
 
   return (
     <div className="card">

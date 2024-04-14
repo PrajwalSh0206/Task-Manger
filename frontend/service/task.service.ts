@@ -4,6 +4,7 @@ import { STATUS_CODE } from '../constants/statusCode';
 import { getTaskDto, taskDto } from '../dto/task.dto';
 import {
   axiosCreateResponseDto,
+  axiosDeleteResponseDto,
   axiosDto,
   axiosGetResponseDto,
 } from '../dto/axios.dto';
@@ -62,6 +63,32 @@ export const getTasks = async (): Promise<axiosGetResponseDto> => {
       return Promise.resolve({
         type: 'success',
         data: data.data,
+      });
+    }
+    let error = new CustomError('No Data Found', 'failure');
+    return Promise.reject(error);
+  } catch (err) {
+    console.log(err);
+    let error = new CustomError('No Data Found', 'failure');
+    return Promise.reject(error);
+  }
+};
+
+export const deleteTasks = async (
+  id: string,
+): Promise<axiosDeleteResponseDto> => {
+  try {
+    const response: axiosDto = await axios({
+      url: `${API_BASE_URL}/task`,
+      method: 'DELETE',
+      data: { id },
+    });
+    console.log(response);
+
+    const { status } = response;
+    if (status == STATUS_CODE.SUCCESS) {
+      return Promise.resolve({
+        type: 'success',
       });
     }
     let error = new CustomError('No Data Found', 'failure');

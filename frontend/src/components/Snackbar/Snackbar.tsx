@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SnackBar.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { disableToast } from '../../store/reducers/snackBarReducer';
 
-type toastTypeDto = 'success' | 'failure';
+const SnackBar: React.FC = () => {
+  const enableToast = useSelector(
+    (state: RootState) => state.snackbar.enableToast
+  );
+  const toastMessage = useSelector(
+    (state: RootState) => state.snackbar.toastMessage
+  );
+  const toastType = useSelector((state: RootState) => state.snackbar.toastType);
 
-interface toastDto {
-  toastType: toastTypeDto;
-  toastMessage: string;
-  enableToast: boolean;
-}
+  const dispatch = useDispatch<AppDispatch>();
 
-const SnackBar: React.FC<toastDto> = ({
-  toastType,
-  toastMessage,
-  enableToast
-}) => {
+  useEffect(() => {
+    if (enableToast) {
+      setTimeout(() => {
+        dispatch(disableToast());
+      }, 3000);
+    }
+  }, [enableToast]);
+
   return (
     <div id="snackbar" className={`${enableToast ? 'show' : ''}`}>
       <div className={toastType}>
