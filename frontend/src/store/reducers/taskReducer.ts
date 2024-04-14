@@ -5,6 +5,7 @@ import { getTaskDto } from '../../../dto/task.dto';
 interface taskInitialDto {
   all: Array<getTaskDto>;
   important: Array<getTaskDto>;
+  pending: Array<getTaskDto>;
   completed: Array<getTaskDto>;
 }
 
@@ -12,6 +13,7 @@ const initialState: taskInitialDto = {
   all: [],
   important: [],
   completed: [],
+  pending:[]
 };
 
 const popupSlice = createSlice({
@@ -26,6 +28,9 @@ const popupSlice = createSlice({
       });
       state.important = tasks.filter((value) => {
         return value.important;
+      });
+      state.pending = tasks.filter((value) => {
+        return value.important && !value.completed;
       });
     },
   },
